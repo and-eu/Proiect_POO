@@ -3,4 +3,6 @@ project(PR)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(PR main.cpp)
+add_executable(PR main.cpp
+        Produs.cpp
+        Produs.h)
