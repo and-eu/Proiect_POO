@@ -2,6 +2,7 @@
 #include <ostream>
 
 using namespace std;
+
 class Produs{
 protected:
     int cod_produs;
@@ -56,4 +57,8 @@ public:
 
     friend ostream &operator<<(ostream &os, const Produs &produs);
 
+    virtual void descriereProdus() const = 0; // Funcție virtuala pura
+/* Orice clasa care moștenește clasa Produs trebuie sa implementeze aceasta metoda.
+ * Clasa Produs devine o clasa abstracta si nu poate fi instantiata direct. Ea va servi ca o clasa de baza pentru
+ * diferite tipuri de produse, fiecare cu propria sa implementare a metodei descriereProdus(). */
 };

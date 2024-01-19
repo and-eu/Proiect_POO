@@ -95,6 +95,7 @@ void Produs::afisare() const {
     cout << "Producator: " << this->producator << endl;
     cout << "Tara de provenienta: " << this->tara_provenienta << endl;
     cout << "Stoc: " << this->stoc << endl;
+    cout << "descriereProdus: " << endl;
 }
 
 ostream &operator<<(ostream &os, const Produs &produs) {
