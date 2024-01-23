@@ -6,7 +6,7 @@ using namespace std;
 Produs::Produs(){ //constructor fara parametrii
     this->cod_produs=000;
     this->pret=0;
-    this->marca="####";
+    this->model="####";
     this->an_fabricatie=1900;
     this->garantie=0;
     this->producator="####";
@@ -15,19 +15,31 @@ Produs::Produs(){ //constructor fara parametrii
 }
 
 Produs::Produs(int codProdus, float pret, const string &marca, int an_fabricatie, int garantie, const string &producator,
-               const string &taraProvenienta, int stoc) : cod_produs(codProdus), pret(pret), marca(marca),
+               const string &taraProvenienta, int stoc) : cod_produs(codProdus), pret(pret), model(model),
                                                           an_fabricatie(an_fabricatie), garantie(garantie),
                                                           producator(producator), tara_provenienta(taraProvenienta),
                                                           stoc(stoc) {}
 
-Produs::~Produs() = default; //destructor
+Produs::Produs(const Produs &obiect) {
+    this->cod_produs=obiect.cod_produs;
+    this->pret=obiect.pret;
+    this->model=obiect.model;
+    this->an_fabricatie=obiect.an_fabricatie;
+    this->garantie=obiect.garantie;
+    this->producator=obiect.producator;
+    this->tara_provenienta=obiect.tara_provenienta;
+    this->stoc=obiect.stoc;
+}
+
+Produs::~Produs() = default;
 
 int Produs::getCodProdus() const {
     return cod_produs;
 }
 
 void Produs::setCodProdus(int codProdus) {
-    this->cod_produs = codProdus;
+    if (codProdus>999) this->cod_produs = codProdus;
+    else cout<<"Codul produsului trebuie sa aiba 4 cifre."<<endl;
 }
 
 float Produs::getPret() const {
@@ -35,15 +47,17 @@ float Produs::getPret() const {
 }
 
 void Produs::setPret(float pret) {
-    this->pret = pret;
+    if (pret>0) {this->pret = pret;}
+    else {cout<<"pretul trebuie sa fie > 0"<<endl;}
 }
 
-const string &Produs::getMarca() const {
-    return marca;
+const string &Produs::getModel() const {
+    return model;
 }
 
-void Produs::setMarca(const string &nouaMarca) {
-    this->marca = nouaMarca;
+void Produs::setModel(const string &nouModel) {
+    if (nouModel.length()>3) this->model = nouModel;
+    else cout<<"Modelul trebuie sa aiba mai mult de 3 caractere."<<endl;
 }
 
 int Produs::getAnFabricatie() const {
@@ -51,7 +65,8 @@ int Produs::getAnFabricatie() const {
 }
 
 void Produs::setAnFabricatie(int anFabricatie) {
-    this->an_fabricatie = anFabricatie;
+    if (anFabricatie>1900 and anFabricatie<2025) this->an_fabricatie = anFabricatie;
+    else cout<<"Anul de fabricatie nu este corect."<<endl;
 }
 
 int Produs::getGarantie() const {
@@ -59,7 +74,8 @@ int Produs::getGarantie() const {
 }
 
 void Produs::setGarantie(int garantie) {
-    this->garantie = garantie;
+    if (garantie>12 and garantie<100) this->garantie = garantie;
+    else cout<<"Garantia introdusa nu pare sa fie corecta."<<endl;
 }
 
 const string &Produs::getProducator() const {
@@ -67,7 +83,8 @@ const string &Produs::getProducator() const {
 }
 
 void Produs::setProducator(const string &producator) {
-    this->producator = producator;
+    if (producator.length()>3) this->producator = producator;
+    else cout<<"Producatorul trebuie sa aiba mai mult de 3 caractere."<<endl;
 }
 
 const string &Produs::getTaraProvenienta() const {
@@ -75,35 +92,26 @@ const string &Produs::getTaraProvenienta() const {
 }
 
 void Produs::setTaraProvenienta(const string &taraProvenienta) {
-    this->tara_provenienta = taraProvenienta;
+    if (taraProvenienta.length()>3) this->tara_provenienta = taraProvenienta;
+    else cout<<"Tara de proveninta trebuie sa aiba mai mult de 3 caractere."<<endl;
 }
 
 int Produs::getStoc() const {
     return stoc;
 }
 
-void Produs::setStoc(int stoc) {
-    this->stoc = stoc;
+void Produs::setStoc(int stocNou) {
+    if (stocNou>=0) this->stoc = stocNou;
+    else cout<<"Stocul nu poate fi negativ"<<endl;
 }
-
 
 void Produs::afisare() const {
     cout << "Cod produs: " << this->cod_produs << endl;
     cout << "Pret: " << this->pret << " lei" << endl;
-    cout << "Marca: " << this->marca << endl;
+    cout << "Model: " << this->model << endl;
     cout << "An fabricatie: " << this->an_fabricatie << endl;
     cout << "Garantie: " << this->garantie << " luni" << endl;
     cout << "Producator: " << this->producator << endl;
     cout << "Tara de provenienta: " << this->tara_provenienta << endl;
     cout << "Stoc: " << this->stoc << endl;
-    cout << "descriereProdus: " << endl;
 }
-
-ostream &operator<<(ostream &os, const Produs &produs) {
-    os << "cod_produs: " << produs.cod_produs << " pret: " << produs.pret << " marca: " << produs.marca
-       << " an_fabricatie: " << produs.an_fabricatie << " garantie: " << produs.garantie << " producator: "
-       << produs.producator << " tara_provenienta: " << produs.tara_provenienta << " stoc: " << produs.stoc;
-    return os;
-}
-
-

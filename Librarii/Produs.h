@@ -7,7 +7,7 @@ class Produs{  // Clasa de baza abstracta
 protected:
     int cod_produs; //cod unic
     float pret; //pretul produsului
-    string marca; //marca produsului
+    string model; //marca produsului
     int an_fabricatie; //anul fabricatiei
     int garantie; //numar luni
     string producator; //numele producatorului
@@ -16,44 +16,53 @@ protected:
 public:
     Produs(); //constructor fara parametrii
 
-    Produs(int codProdus, float pret, const string &marca, int an_fabricatie, int garantie, const string &producator,
+    Produs(int codProdus, float pret, const string &model, int an_fabricatie, int garantie, const string &producator,
            const string &taraProvenienta, int stoc); //constructor cu parametrii
 
-    virtual ~Produs(); //destructor
+    Produs(const Produs& obiect);
 
-    [[nodiscard]] int getCodProdus() const; //getter pentru codul produsului
+    virtual ~Produs();
 
-    void setCodProdus(int codProdus); //setter pentru codul produsului
+    [[nodiscard]] int getCodProdus() const;
 
-    [[nodiscard]] float getPret() const; //getter pentru pretul produsului
+    void setCodProdus(int codProdus);
 
-    void setPret(float pret); //setter pentru pretul produsului
+    [[nodiscard]] float getPret() const;
 
-    [[nodiscard]] const string &getMarca() const; //getter pentru marca produsului
+    void setPret(float pret);
 
-    void setMarca(const string &marca); //setter pentru marca produsului
+    [[nodiscard]] const string &getModel() const;
 
-    [[nodiscard]] int getAnFabricatie() const; //getter pentru anul fabricatiei
+    void setModel(const string &model);
 
-    void setAnFabricatie(int anFabricatie); //setter pentru anul fabricatiei
+    int getAnFabricatie() const;
 
-    [[nodiscard]] int getGarantie() const; //getter pentru garantie
+    void setAnFabricatie(int anFabricatie);
 
-    void setGarantie(int garantie); //setter pentru garantie
+    [[nodiscard]] int getGarantie() const;
 
-    [[nodiscard]] const string &getProducator() const; //getter pentru producator
+    void setGarantie(int garantie);
 
-    void setProducator(const string &producator); //setter pentru producator
+    [[nodiscard]] const string &getProducator() const;
 
-    [[nodiscard]] const string &getTaraProvenienta() const; //getter pentru tara de provenienta
+    void setProducator(const string &producator);
 
-    void setTaraProvenienta(const string &taraProvenienta); //setter pentru tara de provenienta
+    [[nodiscard]] const string &getTaraProvenienta() const;
 
-    [[nodiscard]] int getStoc() const; //getter pentru stoc
+    void setTaraProvenienta(const string &taraProvenienta);
 
-    void setStoc(int stoc); //setter pentru stoc
+    [[nodiscard]] int getStoc() const;
 
-    void afisare() const; //afisarea produsului
+    void setStoc(int stoc);
 
-    friend ostream &operator<<(ostream &os, const Produs &produs); //supraincarcarea operatorului de afisare << pentru produs (pentru a putea fi afisat in fisier) (nu este folosit in program)
+    virtual void afisare() const;
+
+    bool vanzareProdus(int contitate);
+
+    void incarcaStoc(int cantitate);
+
+    virtual float calculeazaTotal() = 0;
+
+    virtual void afisarePretDupaMarca(const std::string& marcaCautata) const = 0;
+
 };
