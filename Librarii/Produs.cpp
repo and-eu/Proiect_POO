@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Produs::Produs(){
+Produs::Produs(){ //constructor fara parametrii
     this->cod_produs=000;
     this->pret=0;
     this->marca="####";
@@ -20,7 +20,7 @@ Produs::Produs(int codProdus, float pret, const string &marca, int an_fabricatie
                                                           producator(producator), tara_provenienta(taraProvenienta),
                                                           stoc(stoc) {}
 
-Produs::~Produs() = default;
+Produs::~Produs() = default; //destructor
 
 int Produs::getCodProdus() const {
     return cod_produs;
@@ -85,6 +85,7 @@ int Produs::getStoc() const {
 void Produs::setStoc(int stoc) {
     this->stoc = stoc;
 }
+
 
 void Produs::afisare() const {
     cout << "Cod produs: " << this->cod_produs << endl;
