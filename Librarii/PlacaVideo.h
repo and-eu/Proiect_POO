@@ -38,5 +38,7 @@ public:
 
     void outputFisier(ofstream &stream, string sep = ", ") const;
 
+    void afisarePretDupaProducator(string& producatorCautat);
+
     double calculPretRedus();
 };

@@ -77,6 +77,15 @@ void PlacaVideo::outputFisier(ofstream &stream, string sep) const {
     stream << chipset << sep << capacitate_memorie << sep << tip_memorie << sep << frecventa << endl;
 }
 
+void Produs::afisarePretDupaProducator(string &producatorCautat) {
+    if (producatorCautat == this->getProducator()) {
+        cout << "Cod: " << this->cod_produs << endl;
+        cout << "Model: " << this->getModel() << endl;
+        cout << "Pret: " << this->getPret() << " lei" << endl;
+        cout << "Stoc: " << this->getStoc() << endl;
+    }
+}
+
 double PlacaVideo::calculPretRedus() {
     if ((this->getStoc() > 20) && (this->getPret() > 4000))
         return this->pret - this->pret * 0.1;
