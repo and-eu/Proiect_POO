@@ -5,7 +5,6 @@
 using namespace std;
 
 Produs::Produs(){ //constructor fara parametrii
-    this->cod_produs=000;
     this->pret=0;
     this->model="####";
     this->an_fabricatie=1900;
@@ -15,14 +14,13 @@ Produs::Produs(){ //constructor fara parametrii
     this->stoc=0;
 }
 
-Produs::Produs(int codProdus, float pret, const string &marca, int an_fabricatie, int garantie, const string &producator,
-               const string &taraProvenienta, int stoc) : cod_produs(codProdus), pret(pret), model(model),
+Produs::Produs(float pret, const string &marca, int an_fabricatie, int garantie, const string &producator,
+               const string &taraProvenienta, int stoc) : pret(pret), model(model),
                                                           an_fabricatie(an_fabricatie), garantie(garantie),
                                                           producator(producator), tara_provenienta(taraProvenienta),
                                                           stoc(stoc) {}
 
 Produs::Produs(const Produs &obiect) {
-    this->cod_produs=obiect.cod_produs;
     this->pret=obiect.pret;
     this->model=obiect.model;
     this->an_fabricatie=obiect.an_fabricatie;
@@ -34,14 +32,6 @@ Produs::Produs(const Produs &obiect) {
 
 Produs::~Produs() = default;
 
-int Produs::getCodProdus() const {
-    return cod_produs;
-}
-
-void Produs::setCodProdus(int codProdus) {
-    if (codProdus>999) this->cod_produs = codProdus;
-    else cout<<"Codul produsului trebuie sa aiba 4 cifre."<<endl;
-}
 
 float Produs::getPret() const {
     return pret;
@@ -107,7 +97,6 @@ void Produs::setStoc(int stocNou) {
 }
 
 void Produs::afisare() const {
-    cout << "Cod produs: " << this->cod_produs << endl;
     cout << "Model: " << this->model << endl;
     cout << "Pret: " << this->pret << " lei" << endl;
     cout << "An fabricatie: " << this->an_fabricatie << endl;
@@ -118,8 +107,7 @@ void Produs::afisare() const {
 }
 
 void Produs::outputFisier(ofstream &stream, string sep, bool useEndl) const {
-    stream  << this->cod_produs << sep
-            << this->pret << sep
+    stream  << this->pret << sep
             << this->model << sep
             << this->an_fabricatie << sep
             << this->garantie << sep
@@ -156,11 +144,4 @@ void Produs::incarcaStoc(int cantitate) {
     }
 }
 
-void Produs::afisarePretDupaProducator(const string &producatorCautat) {
-    if (producatorCautat == this->producator){
-        cout << "Cod produs: " << this->cod_produs << endl;
-        cout << "Model: " << this->model << endl;
-        cout << "Pret: " << this->pret << " lei" << endl;
-        cout << "Stoc: " << this->stoc << endl;
-    }
-}
+

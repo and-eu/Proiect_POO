@@ -6,7 +6,6 @@ using namespace std;
 
 class Produs{  // Clasa de baza abstracta
 protected:
-    int cod_produs; //cod unic
     float pret; //pretul produsului
     string model; //marca produsului
     int an_fabricatie; //anul fabricatiei
@@ -14,19 +13,16 @@ protected:
     string producator; //numele producatorului
     string tara_provenienta; //tara de provenienta
     int stoc; //numarul de produse din stoc
+
 public:
     Produs(); //constructor fara parametrii
 
-    Produs(int codProdus, float pret, const string &model, int an_fabricatie, int garantie, const string &producator,
+    Produs(float pret, const string &model, int an_fabricatie, int garantie, const string &producator,
            const string &taraProvenienta, int stoc); //constructor cu parametrii
 
     Produs(const Produs& obiect);
 
     virtual ~Produs();
-
-    [[nodiscard]] int getCodProdus() const;
-
-    void setCodProdus(int codProdus);
 
     [[nodiscard]] float getPret() const;
 
@@ -64,8 +60,8 @@ public:
 
     void incarcaStoc(int cantitate);
 
-    virtual float calculeazaTotal() = 0;
+    virtual void afisarePretDupaProducator(string& producatorCautat) = 0;
 
-    void afisarePretDupaProducator(const string& producatorCautat);
+    virtual double calculPretRedus() = 0;
 
 };
