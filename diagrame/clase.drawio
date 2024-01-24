@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-01-24T17:18:15.641Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="HRq-rHQ5aIt8do-YgeSJ" version="23.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2024-01-24T17:19:37.806Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="U5yXXoY2_aBajJ0-LoII" version="23.0.0" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2940" dy="1084" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -21,7 +21,7 @@
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-6" value="class Procesor" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=16;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="10" y="520" width="220" height="286" as="geometry" />
         </mxCell>
-        <mxCell id="Ku1soB3VHKQDk2RZOCrD-7" value="+ soclu: string&lt;br&gt;+ frecventa: int (mhz)&lt;br&gt;+ numar_nuclee: int&lt;br&gt;+ memorie_cache: int&lt;br&gt;+ @class: numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-6" vertex="1">
+        <mxCell id="Ku1soB3VHKQDk2RZOCrD-7" value="+ soclu: string&lt;br&gt;+ frecventa: int (mhz)&lt;br&gt;+ numar_nuclee: int&lt;br&gt;+ memorie_cache: int&lt;br&gt;+ static: numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-6" vertex="1">
           <mxGeometry y="30" width="220" height="140" as="geometry" />
         </mxCell>
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-6" vertex="1">
@@ -33,7 +33,7 @@
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-10" value="class PlacaBaza" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=16;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="270" y="570" width="220" height="286" as="geometry" />
         </mxCell>
-        <mxCell id="Ku1soB3VHKQDk2RZOCrD-11" value="+ soclu: string&lt;br&gt;+ chipset: string&lt;br&gt;+ format: string&lt;br&gt;+ tip_memorie: string&lt;br&gt;+ @class: numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-10" vertex="1">
+        <mxCell id="Ku1soB3VHKQDk2RZOCrD-11" value="+ soclu: string&lt;br&gt;+ chipset: string&lt;br&gt;+ format: string&lt;br&gt;+ tip_memorie: string&lt;br&gt;+ static:&amp;nbsp;numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-10" vertex="1">
           <mxGeometry y="30" width="220" height="140" as="geometry" />
         </mxCell>
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-10" vertex="1">
@@ -45,7 +45,7 @@
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-14" value="class Memorie" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=16;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="560" y="520" width="220" height="286" as="geometry" />
         </mxCell>
-        <mxCell id="Ku1soB3VHKQDk2RZOCrD-15" value="+ tip_memorie: string&lt;br&gt;+ capacitate: int (GB)&lt;br&gt;+ frecventa: int (mhz)&lt;br&gt;+ @class: numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-14" vertex="1">
+        <mxCell id="Ku1soB3VHKQDk2RZOCrD-15" value="+ tip_memorie: string&lt;br&gt;+ capacitate: int (GB)&lt;br&gt;+ frecventa: int (mhz)&lt;br&gt;+ static:&amp;nbsp;numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-14" vertex="1">
           <mxGeometry y="30" width="220" height="140" as="geometry" />
         </mxCell>
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-16" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-14" vertex="1">
@@ -57,7 +57,7 @@
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-22" value="class Stocare" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=16;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="580" y="100" width="220" height="286" as="geometry" />
         </mxCell>
-        <mxCell id="Ku1soB3VHKQDk2RZOCrD-23" value="+ tip: string&lt;br&gt;+ format: string&lt;br&gt;+ capacitate: int (GB)&lt;br&gt;+ viteza: int (mb/s)&lt;br&gt;+ @class: numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-22" vertex="1">
+        <mxCell id="Ku1soB3VHKQDk2RZOCrD-23" value="+ tip: string&lt;br&gt;+ format: string&lt;br&gt;+ capacitate: int (GB)&lt;br&gt;+ viteza: int (mb/s)&lt;br&gt;+ static:&amp;nbsp;numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-22" vertex="1">
           <mxGeometry y="30" width="220" height="140" as="geometry" />
         </mxCell>
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-24" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-22" vertex="1">
@@ -69,7 +69,7 @@
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-26" value="class PlacaVideo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=16;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="20" y="100" width="220" height="306" as="geometry" />
         </mxCell>
-        <mxCell id="Ku1soB3VHKQDk2RZOCrD-27" value="+ chipset: string&lt;br&gt;+ capacitate_memorie: int&lt;br&gt;+ tip_memorie: string&lt;br&gt;+ frecventa: int&lt;br&gt;+ @class: numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-26" vertex="1">
+        <mxCell id="Ku1soB3VHKQDk2RZOCrD-27" value="+ chipset: string&lt;br&gt;+ capacitate_memorie: int&lt;br&gt;+ tip_memorie: string&lt;br&gt;+ frecventa: int&lt;br&gt;+ static: numar produse distincte" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-26" vertex="1">
           <mxGeometry y="30" width="220" height="160" as="geometry" />
         </mxCell>
         <mxCell id="Ku1soB3VHKQDk2RZOCrD-28" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" parent="Ku1soB3VHKQDk2RZOCrD-26" vertex="1">
