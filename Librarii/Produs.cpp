@@ -1,5 +1,6 @@
 #include "Produs.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -107,11 +108,59 @@ void Produs::setStoc(int stocNou) {
 
 void Produs::afisare() const {
     cout << "Cod produs: " << this->cod_produs << endl;
-    cout << "Pret: " << this->pret << " lei" << endl;
     cout << "Model: " << this->model << endl;
+    cout << "Pret: " << this->pret << " lei" << endl;
     cout << "An fabricatie: " << this->an_fabricatie << endl;
     cout << "Garantie: " << this->garantie << " luni" << endl;
     cout << "Producator: " << this->producator << endl;
     cout << "Tara de provenienta: " << this->tara_provenienta << endl;
     cout << "Stoc: " << this->stoc << endl;
+}
+
+void Produs::outputFisier(ofstream &stream, string sep, bool useEndl) const {
+    stream  << this->cod_produs << sep
+            << this->pret << sep
+            << this->model << sep
+            << this->an_fabricatie << sep
+            << this->garantie << sep
+            << this->producator << sep
+            << this->tara_provenienta << sep
+            << this->stoc;
+    if (useEndl)
+        stream << endl;
+    else
+        stream << sep;
+}
+
+bool Produs::vanzareProdus(int cantitate) {
+    if (cantitate > 0){
+        if (cantitate > this->stoc){
+            this->stoc = this->stoc - cantitate;
+            cout << "Vanzare reusita" << endl;
+            return true;
+        } else {
+            cout << "Stoc insuficient" << endl;
+            return false;
+        }
+    } else {
+        cout<<"Nu se poate vinde cantitate mai mica sau egal cu 0"<<endl;
+        return false;
+    }
+}
+
+void Produs::incarcaStoc(int cantitate) {
+    if (cantitate > 0){
+        this->stoc = this->stoc + cantitate;
+    } else {
+        cout<<"Nu se poate incarca stocul cu o cantitate mai mica sau egal cu 0"<<endl;
+    }
+}
+
+void Produs::afisarePretDupaProducator(const string &producatorCautat) {
+    if (producatorCautat == this->producator){
+        cout << "Cod produs: " << this->cod_produs << endl;
+        cout << "Model: " << this->model << endl;
+        cout << "Pret: " << this->pret << " lei" << endl;
+        cout << "Stoc: " << this->stoc << endl;
+    }
 }
