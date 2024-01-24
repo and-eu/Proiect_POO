@@ -77,9 +77,9 @@ void PlacaVideo::outputFisier(ofstream &stream, string sep) const {
     stream << chipset << sep << capacitate_memorie << sep << tip_memorie << sep << frecventa << endl;
 }
 
-void Produs::afisarePretDupaProducator(string &producatorCautat) {
+void PlacaVideo::afisarePretDupaProducator(string &producatorCautat) {
     if (producatorCautat == this->getProducator()) {
-        cout << "Cod: " << this->cod_produs << endl;
+        cout << "Cod produs: " << this->cod_produs << endl;
         cout << "Model: " << this->getModel() << endl;
         cout << "Pret: " << this->getPret() << " lei" << endl;
         cout << "Stoc: " << this->getStoc() << endl;
