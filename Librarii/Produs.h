@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <ostream>
 
@@ -57,12 +58,14 @@ public:
 
     virtual void afisare() const;
 
-    bool vanzareProdus(int contitate);
+    virtual void outputFisier(ofstream &stream, string sep = ", ", bool useEndl = true) const;
+
+    bool vanzareProdus(int cantitate);
 
     void incarcaStoc(int cantitate);
 
     virtual float calculeazaTotal() = 0;
 
-    virtual void afisarePretDupaMarca(const std::string& marcaCautata) const = 0;
+    void afisarePretDupaProducator(const string& producatorCautat);
 
 };
