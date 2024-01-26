@@ -36,7 +36,7 @@ public:
     int getFrecventa() const;
     void setFrecventa(int frecventa);
 
-    void outputFisier(ofstream &stream, char sep = ",") const;
+    void outputFisier(ofstream &stream, char sep = ',') const;
 
     void afisarePretDupaProducator(string& producatorCautat);
 

@@ -54,7 +54,7 @@ public:
 
     virtual void afisare() const;
 
-    virtual void outputFisier(ofstream &stream, string sep = ", ", bool useEndl = true) const;
+    virtual void outputFisier(ofstream &stream, char sep = ',', bool useEndl = true) const;
 
     bool vanzareProdus(int cantitate);
 
@@ -62,6 +62,6 @@ public:
 
     virtual void afisarePretDupaProducator(string& producatorCautat) = 0;
 
-    virtual double calculPretRedus() = 0;
+    virtual float calculPretRedus() = 0;
 
 };

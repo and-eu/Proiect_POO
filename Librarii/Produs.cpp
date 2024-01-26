@@ -106,7 +106,7 @@ void Produs::afisare() const {
     cout << "Stoc: " << this->stoc << endl;
 }
 
-void Produs::outputFisier(ofstream &stream, string sep, bool useEndl) const {
+void Produs::outputFisier(ofstream &stream, char sep, bool useEndl) const {
     stream  << this->pret << sep
             << this->model << sep
             << this->an_fabricatie << sep
