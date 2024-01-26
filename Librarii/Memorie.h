@@ -17,6 +17,8 @@ public:
                const string &taraProvenienta, int stoc, string &tip_memorie, int capacitate,
                int frecventa); //constructor cu toate argumentele
 
+    Memorie();
+
     ~Memorie(); //destructor
 
     void afisare() const; //afisarea memoriei RAM

@@ -14,11 +14,16 @@ Produs::Produs(){ //constructor fara parametrii
     this->stoc=0;
 }
 
-Produs::Produs(float pret, const string &marca, int an_fabricatie, int garantie, const string &producator,
-               const string &taraProvenienta, int stoc) : pret(pret), model(model),
-                                                          an_fabricatie(an_fabricatie), garantie(garantie),
-                                                          producator(producator), tara_provenienta(taraProvenienta),
-                                                          stoc(stoc) {}
+Produs::Produs(float pret, const string &model, int an_fabricatie, int garantie, const string &producator,
+               const string &taraProvenienta, int stoc){
+    this->pret=pret;
+    this->model=model;
+    this->an_fabricatie=an_fabricatie;
+    this->garantie=garantie;
+    this->producator=producator;
+    this->tara_provenienta=taraProvenienta;
+    this->stoc=stoc;
+}
 
 Produs::Produs(const Produs &obiect) {
     this->pret=obiect.pret;
@@ -122,7 +127,7 @@ void Produs::outputFisier(ofstream &stream, char sep, bool useEndl) const {
 
 bool Produs::vanzareProdus(int cantitate) {
     if (cantitate > 0){
-        if (cantitate > this->stoc){
+        if (cantitate <= this->stoc){
             this->stoc = this->stoc - cantitate;
             cout << "Vanzare reusita" << endl;
             return true;

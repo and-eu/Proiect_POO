@@ -86,12 +86,12 @@ void Stocare::afisarePretDupaProducator(string &producatorCautat) {
         cout << "Cod produs: " << this->cod_produs << endl;
         cout << "Model: " << this->getModel() << endl;
         cout << "Pret: " << this->getPret() << "lei" << endl;
-        cout << "Stoc: " << this->getStoc() << endl;
+        cout << "Stoc: " << this->getStoc() << endl<<endl;
     }
 }
 
 //calcularea pretului redus
-double Stocare::calculPretRedus() {
+float Stocare::calculPretRedus() {
     if ((this->getStoc()>20) && (this->getPret()>5000))
         return this->getPret() - this->getPret() * 0.1;
     else if ((this->getStoc()>0) && (this->getPret()>5000))

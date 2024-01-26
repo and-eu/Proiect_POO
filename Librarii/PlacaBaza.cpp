@@ -87,7 +87,7 @@ void PlacaBaza::afisarePretDupaProducator(string &producatorCautat) {
         cout << "Cod produs: " << this->cod_produs << endl;
         cout << "Model: " << this->getModel() << endl;
         cout << "Pret: " << this->getPret() << "lei" << endl;
-        cout << "Stoc: " << this->getStoc() << endl;
+        cout << "Stoc: " << this->getStoc() << endl<<endl;
     }
 }
 
