@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int PlacaVideo::index_cod = 0;
+int PlacaVideo::index_cod = 1;
 int PlacaVideo::nrProduseDistincte = 0;
 
 //constructor cu toate argumentele
@@ -12,7 +12,9 @@ PlacaVideo::PlacaVideo(float pret, const string &model, int an_fabricatie, int g
                        const string &producator, const string &taraProvenienta, int stoc, string &chipset,
                        int capacitate_memorie, string &tip_memorie, int frecventa) :
         Produs(pret, model, an_fabricatie, garantie, producator, taraProvenienta, stoc) {
-    this->cod_produs = "PV" + to_string(index_cod);
+    string numar= to_string(index_cod);
+    string zero(4-numar.length(),'0');
+    this->cod_produs = "PV" + zero + numar;
     this->chipset = chipset;
     this->capacitate_memorie = capacitate_memorie;
     this->tip_memorie = tip_memorie;
@@ -62,6 +64,7 @@ void PlacaVideo::setFrecventa(int frecventa) {
     this->frecventa = frecventa;
 }
 
+//afisarea placii video
 void PlacaVideo::afisare() const {
     cout << "Cod produs: " << cod_produs << endl;
     Produs::afisare();
@@ -71,12 +74,14 @@ void PlacaVideo::afisare() const {
     cout << "Frecventa: " << frecventa << endl;
 }
 
-void PlacaVideo::outputFisier(ofstream &stream, string sep) const {
+//afisarea placii video in fisier
+void PlacaVideo::outputFisier(ofstream &stream, char sep) const {
     stream << cod_produs << sep;
     Produs::outputFisier(stream, sep, false);
     stream << chipset << sep << capacitate_memorie << sep << tip_memorie << sep << frecventa << endl;
 }
 
+//afisarea pretului placii video dupa producator
 void PlacaVideo::afisarePretDupaProducator(string &producatorCautat) {
     if (producatorCautat == this->getProducator()) {
         cout << "Cod produs: " << this->cod_produs << endl;
@@ -86,12 +91,12 @@ void PlacaVideo::afisarePretDupaProducator(string &producatorCautat) {
     }
 }
 
-double PlacaVideo::calculPretRedus() {
-    if ((this->getStoc() > 20) && (this->getPret() > 4000))
-        return this->pret - this->pret * 0.1;
-    else if ((this->getStoc() > 0) && (this->getPret() > 4000))
-        return this->pret - this->pret * 0.05;
+//calcularea pretului redus al placii video
+float PlacaVideo::calculPretRedus() {
+    if ((this->getStoc() > 20) && (this->getPret() > 6000))
+        return this->getPret() - this->getPret() * 0.1;
+    else if ((this->getStoc() > 0) && (this->getPret() > 6000))
+        return this->getPret() - this->getPret() * 0.05;
     else
-    return this->pret;
+    return this->getPret();
 }
-

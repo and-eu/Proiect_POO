@@ -20,7 +20,9 @@ public:
 
     ~PlacaVideo(); //destructor
 
-    const string &getCodProdus() const;
+    void afisare() const; //afisarea placii video
+
+    const string &getCodProdus() const; //getter pentru codul produsului
 
     const string &getChipset() const;
     void setChipset(const string &chipset);
@@ -34,11 +36,9 @@ public:
     int getFrecventa() const;
     void setFrecventa(int frecventa);
 
-    void afisare() const; //afisarea placii video
-
-    void outputFisier(ofstream &stream, string sep = ", ") const;
+    void outputFisier(ofstream &stream, char sep = ",") const;
 
     void afisarePretDupaProducator(string& producatorCautat);
 
-    double calculPretRedus();
+    float calculPretRedus();
 };
