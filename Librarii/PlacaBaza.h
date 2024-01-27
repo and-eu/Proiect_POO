@@ -36,7 +36,7 @@ public:
     const string &getTipMemorie() const;
     void setTipMemorie(const string &tipMemorie);
 
-    void outputFisier(ofstream &stream, char sep = ',') const;
+    void outputFisier(ofstream &stream, char sep = ',', bool useEndl = true) const override;
 
     void afisarePretDupaProducator(string& producatorCautat);
 

@@ -75,8 +75,8 @@ void PlacaVideo::afisare() const {
 }
 
 //afisarea placii video in fisier
-void PlacaVideo::outputFisier(ofstream &stream, char sep) const {
-    stream << cod_produs << sep;
+void PlacaVideo::outputFisier(ofstream &stream, char sep, bool useEndl) const {
+    stream << "PlacaVideo" << sep ;
     Produs::outputFisier(stream, sep, false);
     stream << chipset << sep << capacitate_memorie << sep << tip_memorie << sep << frecventa << endl;
 }

@@ -75,8 +75,8 @@ void Procesor::afisare() const {
     cout << "Memorie cache: " << memorie_cache << endl;
 }
 
-void Procesor::outputFisier(ofstream &stream, char sep) const {
-    stream<< cod_produs << sep;
+void Procesor::outputFisier(ofstream &stream, char sep, bool useEndl) const {
+    stream << "Procesor" << sep ;
     Produs::outputFisier(stream, sep, false);
     stream << soclu << sep << frecventa << sep << numar_nuclee << sep << memorie_cache << endl;
 }

@@ -75,8 +75,8 @@ void Memorie::afisare() const {
 }
 
 //afisarea memoriei RAM in fisier
-void Memorie::outputFisier(ofstream &stream, char sep) const {
-    stream << cod_produs << sep;
+void Memorie::outputFisier(ofstream &stream, char sep, bool useEndl) const {
+    stream << "Memorie" << sep ;
     Produs::outputFisier(stream, sep, false);
     stream << tip_memorie << sep << capacitate << sep << frecventa << endl;
 }

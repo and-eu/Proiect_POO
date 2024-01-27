@@ -74,8 +74,8 @@ void Stocare::afisare() const {
 }
 
 //afisarea stocarii in fisier
-void Stocare::outputFisier(ofstream &stream, char sep) const {
-    stream << cod_produs << sep;
+void Stocare::outputFisier(ofstream &stream, char sep, bool useEndl) const {
+    stream << "Stocare" << sep ;
     Produs::outputFisier(stream, sep, false);
     stream << tip << sep << format << sep << capacitate << sep << viteza << endl;
 }

@@ -75,8 +75,8 @@ void PlacaBaza::afisare() const {
 }
 
 //afisarea placii de baza in fisier
-void PlacaBaza::outputFisier(ofstream &stream, char sep) const {
-    stream << cod_produs << sep;
+void PlacaBaza::outputFisier(ofstream &stream, char sep, bool useEndl) const {
+    stream << "PlacaBaza" << sep ;
     Produs::outputFisier(stream, sep, false);
            stream << soclu << sep << chipset << sep << format << sep << tip_memorie << endl;
 }
