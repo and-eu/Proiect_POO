@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <limits>
+#include <cstdio>
 #include "Librarii/Produs.h"
 #include "Librarii/Memorie.h"
 #include "Librarii/PlacaBaza.h"
@@ -15,13 +16,16 @@
 
 using namespace std;
 
+// Functii ajutatoare
 int citireInt();
 float citireFloat();
 string citireString();
 int cautareProdus(vector<Produs*>& vectorProduse, bool skip_afisare = false);
 void clearConsole();
 void afisareSumar(vector<Produs*>& vectorProduse);
+void cerereDateProdus(float &pret, string &model, int &an_fab, int &garantie, string &producator, string &tara, int &stoc);
 
+//Functii meniu
 void vanzareProdus(vector<Produs*>& vectorProduse, bool &data_change);
 void adaugareProdus(vector<Produs*>& vectorProduse, bool &data_change);
 void stergereProdus(vector<Produs*>& vectorProduse, bool &data_change);
@@ -30,13 +34,11 @@ void afisareProdus(vector<Produs*>& vectorProduse);
 void pretRedus(vector<Produs*>& vectorProduse);
 void totalCategorie(vector<Produs*>& vectorProduse);
 void afisarePreturiProducator(vector<Produs*>& vectorProduse);
-void salvareDate(vector<Produs*>& vectorProduse, bool &data_change);
+bool salvareDate(vector<Produs*>& vectorProduse, bool &data_change, char sep);
 
 int main() {
     ifstream fisier_in("../lista_produse.csv");
-    int n;
     string linie;
-    char *p_temp;
     vector<Produs*> vectorProduse;
     const char *sep = ",";
     bool data_change = false;
@@ -65,59 +67,36 @@ int main() {
                 continue;
             }
 
-//                //atribute Produs
-//            string categorie, model, producator, tara;
-//            float pret = 0;
-//            int an_fab, garantie, stoc;
-//
-//                //atribute derivate
-//            string chipset, tip_memorie, soclu, format, tip_stocare;
-//            int capacitate_memorie, frecventa, capacitate, viteza, numar_nuclee, cahe;
-
             auto iterator = map_categorie.find(vect_linie[0]);
             int conditie = iterator->second;
 
-//            stoc = stof(vect_linie[1]);
-//            model = vect_linie[2];
-//            an_fab = stoi(vect_linie[3]);
-//            garantie = stoi(vect_linie[4]);
-//            producator = vect_linie[5];
-//            tara = vect_linie[6];
-//            stoc = stoi(vect_linie[7]);
-
             switch (conditie) {
-                case 1:{
-                    //Produs *temp_prod = new Memorie();
-//                    tip_memorie = vect_linie[8];
-//                    capacitate = stoi(vect_linie[9]);
-//                    frecventa = stoi(vect_linie[10]);
-//                    Produs *temp_prod = new Memorie(pret, model, an_fab, garantie, producator,
-//                                                    tara, stoc, tip_memorie, capacitate, frecventa);
+                case 1:{ // Memorie
                     Produs *temp_prod = new Memorie(stof(vect_linie[1]), vect_linie[2], stoi(vect_linie[3]),
                                                     stoi(vect_linie[4]), vect_linie[5], vect_linie[6],
                                                     stoi(vect_linie[7]), vect_linie[8], stoi(vect_linie[9]),
                                                     stoi(vect_linie[10]));
                     vectorProduse.push_back(temp_prod);
                     break;}
-                case 2:{
+                case 2:{ // Placa de baza
                     Produs *temp_prod = new PlacaBaza(stof(vect_linie[1]), vect_linie[2], stoi(vect_linie[3]),
                                                     stoi(vect_linie[4]), vect_linie[5], vect_linie[6], stoi(vect_linie[7]),
                                                     vect_linie[8], vect_linie[9], vect_linie[10], vect_linie[11]);
                     vectorProduse.push_back(temp_prod);
                     break;}
-                case 3:{
+                case 3:{ // Placa video
                     Produs *temp_prod = new PlacaVideo(stof(vect_linie[1]), vect_linie[2], stoi(vect_linie[3]),
                                                       stoi(vect_linie[4]), vect_linie[5], vect_linie[6], stoi(vect_linie[7]),
                                                       vect_linie[8], stoi(vect_linie[9]), vect_linie[10], stoi(vect_linie[11]));
                     vectorProduse.push_back(temp_prod);
                     break;}
-                case 4:{
+                case 4:{ // Procesor
                     Produs *temp_prod = new Procesor(stof(vect_linie[1]), vect_linie[2], stoi(vect_linie[3]),
                                                      stoi(vect_linie[4]), vect_linie[5], vect_linie[6], stoi(vect_linie[7]),
                                                      vect_linie[8], stoi(vect_linie[9]), stoi(vect_linie[10]), stoi(vect_linie[11]));
                     vectorProduse.push_back(temp_prod);
                     break;}
-                case 5:{
+                case 5:{ // Stocare
                     Produs *temp_prod = new Stocare(stof(vect_linie[1]), vect_linie[2], stoi(vect_linie[3]),
                                                      stoi(vect_linie[4]), vect_linie[5], vect_linie[6], stoi(vect_linie[7]),
                                                      vect_linie[8], vect_linie[9], stoi(vect_linie[10]), stoi(vect_linie[11]));
@@ -132,7 +111,7 @@ int main() {
         cout<<"Fisierul nu a putut fi deschis"<<endl;
         return 1;
     }
-
+    fisier_in.close();
     while(true){
         cout<<endl<<"Meniu principal"<<endl;
         cout<<"1. Vanzare produs"<<endl;
@@ -173,7 +152,7 @@ int main() {
                 afisarePreturiProducator(vectorProduse);
                 break;
             case 9:
-                salvareDate(vectorProduse, data_change);
+                salvareDate(vectorProduse, data_change, *sep);
                 break;
             case 0:
                 if (data_change == false){
@@ -183,14 +162,27 @@ int main() {
                     char raspuns;
                     while (true) {
                         cout << "Datele nu au fost salvate. Doriti sa salvati datele?" << endl;
-                        cout << "[Y] pentru salvare si iesire, [N] pentru iesire fara salvare: ";
+                        cout << "[Y] pentru salvare si iesire, [N] pentru iesire fara salvare, [C] Cancel: ";
                         cin >> raspuns;
                         cout<<endl;
                         if (raspuns == 'Y' or raspuns == 'y') {
-                            salvareDate(vectorProduse, data_change);
-                            return 0;
+                            if (salvareDate(vectorProduse, data_change, *sep)){
+                                for (const auto& prod : vectorProduse) {
+                                    delete prod;
+                                }
+                                vectorProduse.clear();
+                                return 0;
+                            } else {
+                                break;
+                            }
                         } else if (raspuns == 'N' or raspuns == 'n') {
+                            for (const auto& prod : vectorProduse) {
+                                delete prod;
+                            }
+                            vectorProduse.clear();
                             return 0;
+                        } else if (raspuns == 'C' or raspuns == 'c') {
+                            continue;
                         } else {
                             cout<<"Optiune invalida."<<endl;
                             continue;
@@ -203,9 +195,9 @@ int main() {
                 continue;
         }
     }
-
     return 0;
 }
+
 void clearConsole(){
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -221,44 +213,41 @@ void afisareSumar(vector<Produs*>& vectorProduse){
 }
 
 int citireInt(){
-
     int numar;
     while (true){
         cin>>numar;
         if (cin.fail()){
             cout<<"Nu ati introdus un numar. Va rog reintroduceti numarul: ";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            clearConsole();
+            continue;
         } else
+            clearConsole();
             return numar;
     }
 }
 
 float citireFloat(){
-    clearConsole();
     float numar;
     while (true){
         cin>>numar;
         if (cin.fail()){
             cout<<"Nu ati introdus un numar cu zecimale. Va rog reintroduceti numarul: ";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            clearConsole();
+            continue;
         } else
+            clearConsole();
             return numar;
     }
 }
 
 string citireString(){
-    clearConsole();
     string text;
     while (true){
         getline(cin, text);
-        if (text.size()>3){
+        if (text.length()>2){
             return text;
         } else {
             cout<<"Textul introdus este prea scurt. Introduceti din nou: "<<endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 }
@@ -314,8 +303,121 @@ void vanzareProdus(vector<Produs*>& vectorProduse, bool &data_change){
         return;
 }
 
-void adaugareProdus(vector<Produs*>& vectorProduse, bool &data_change){
+void cerereDateProdus(float &pret, string &model, int &an_fab, int &garantie, string &producator, string &tara, int &stoc){
+    cout<<"Introduceti modelul/numele:"<<endl;
+    model = citireString();
+    cout<<"Introduceti pretul produsului:"<<endl;
+    pret = citireFloat();
+    cout<<"Introduceti anul de fabricatie al produsului:"<<endl;
+    an_fab = citireInt();
+    cout<<"Introduceti garantia (in luni) a produsului:"<<endl;
+    garantie = citireInt();
+    cout<<"Introduceti numele producatorui:"<<endl;
+    producator = citireString();
+    cout<<"Introduceti tara de origine:"<<endl;
+    tara = citireString();
+    cout<<"Introduceti stocul produsului:"<<endl;
+    stoc = citireInt();
+}
 
+void adaugareProdus(vector<Produs*>& vectorProduse, bool &data_change){
+    //atribute Produs
+    string categorie, model, producator, tara;
+    float pret = 0;
+    int an_fab =1900, garantie=0 , stoc=0;
+
+    //atribute derivate
+    string chipset, tip_memorie, soclu, format, tip_stocare;
+    int capacitate_memorie=0, frecventa=0, viteza=0, numar_nuclee=0, cahe=0;
+
+    cout<<endl<<"Categorii: "<<endl;
+    cout<<"1. Procesor"<<endl;
+    cout<<"2. Placa de baza"<<endl;
+    cout<<"3. Memorie "<<endl;
+    cout<<"4. Placa video"<<endl;
+    cout<<"5. Mediu de stocare"<<endl;
+    cout<<"0. Renuntare"<<endl;
+    cout<<"Selectati o optiune: ";
+    int optiune = citireInt();
+    switch (optiune) {
+        case 1:{ // Procesor
+            cerereDateProdus(pret, model, an_fab, garantie, producator, tara, stoc);
+            cout<<"Introduceti soclu:"<<endl;
+            soclu = citireString();
+            cout<<"Introduceti frecventa:"<<endl;
+            frecventa = citireInt();
+            cout<<"Introduceti numarul de nuclee:"<<endl;
+            numar_nuclee = citireInt();
+            cout<<"Introduceti dimensiunea memoria cache:"<<endl;
+            cahe = citireInt();
+            Produs *temp_prod = new Procesor(pret, model, an_fab, garantie, producator, tara,
+                                             stoc, soclu, frecventa, numar_nuclee, cahe);
+            vectorProduse.push_back(temp_prod);
+            data_change = true;
+            break;}
+        case 2:{ // Placa de baza
+            cerereDateProdus(pret, model, an_fab, garantie, producator, tara, stoc);
+            cout<<"Introduceti soclu:"<<endl;
+            soclu = citireString();
+            cout<<"Introduceti chipsetul:"<<endl;
+            chipset = citireString();
+            cout<<"Introduceti formatul:"<<endl;
+            format = citireString();
+            cout<<"Introduceti tipul memoriei suportate:"<<endl;
+            tip_memorie = citireString();
+            Produs *temp_prod = new PlacaBaza(pret, model, an_fab, garantie, producator, tara,
+                                              stoc, soclu, chipset, format, tip_memorie);
+            vectorProduse.push_back(temp_prod);
+            data_change = true;
+            break;}
+        case 3:{ // Memorie
+            cerereDateProdus(pret, model, an_fab, garantie, producator, tara, stoc);
+            cout<<"Introduceti tipul memorie:"<<endl;
+            tip_memorie = citireString();
+            cout<<"Introduceti capacitate:"<<endl;
+            capacitate_memorie = citireInt();
+            cout<<"Introduceti frecventa:"<<endl;
+            frecventa = citireInt();
+            Produs *temp_prod = new Memorie(pret, model, an_fab, garantie, producator, tara,
+                                            stoc, tip_memorie, capacitate_memorie, frecventa);
+            vectorProduse.push_back(temp_prod);
+            data_change = true;
+            break;}
+        case 4:{ // Placa video
+            cerereDateProdus(pret, model, an_fab, garantie, producator, tara, stoc);
+            cout<<"Introduceti producatorul chipsetului:"<<endl;
+            chipset = citireString();
+            cout<<"Introduceti capacitatea memorie:"<<endl;
+            capacitate_memorie = citireInt();
+            cout<<"Introduceti tipul memorie:"<<endl;
+            tip_memorie = citireString();
+            cout<<"Introduceti frecventa:"<<endl;
+            frecventa = citireInt();
+            Produs *temp_prod = new PlacaVideo(pret, model, an_fab, garantie, producator, tara,
+                                               stoc, chipset, capacitate_memorie, tip_memorie, frecventa);
+            vectorProduse.push_back(temp_prod);
+            data_change = true;
+            break;}
+        case 5:{ // Stocare
+            cerereDateProdus(pret, model, an_fab, garantie, producator, tara, stoc);
+            cout<<"Introduceti tipul:"<<endl;
+            tip_stocare = citireString();
+            cout<<"Introduceti formatul:"<<endl;
+            format = citireString();
+            cout<<"Introduceti capacitatea de stocare:"<<endl;
+            capacitate_memorie = citireInt();
+            cout<<"Introduceti viteza de citire:"<<endl;
+            viteza = citireInt();
+            Produs *temp_prod = new Stocare(pret, model, an_fab, garantie, producator, tara,
+                                            stoc, tip_stocare, format, capacitate_memorie, viteza);
+            vectorProduse.push_back(temp_prod);
+            data_change = true;
+            break;}
+        case 0:
+            return;
+        default:
+            return;
+    }
 }
 
 void stergereProdus(vector<Produs*>& vectorProduse, bool &data_change){
@@ -351,7 +453,6 @@ void afisareProdus(vector<Produs*>& vectorProduse){
     vectorProduse[index]->afisare();
     cout<<endl<<"Press any key to continue."<<endl;
     cin.get();
-    return;
 }
 
 void pretRedus(vector<Produs*>& vectorProduse){
@@ -435,6 +536,8 @@ void totalCategorie(vector<Produs*>& vectorProduse){
             return;
         case 0:
             return;
+        default:
+            return;
     }
 }
 void afisarePreturiProducator(vector<Produs*>& vectorProduse){
@@ -457,9 +560,65 @@ void afisarePreturiProducator(vector<Produs*>& vectorProduse){
     }
     cout<<"Press any key to continue."<<endl;
     cin.get();
-    return;
 }
 
-void salvareDate(vector<Produs*>& vectorProduse, bool &data_change){
+bool copiereDate(const string& path_in, const string& path_out, bool delete_source = false){
+    ifstream fin_temp(path_in);
+    if (!fin_temp.is_open()){
+        cout<<"Nu se poate deschide fisierul: "<<path_in<<endl;
+        return false;
+    }
+    ofstream fout_temp(path_out);
+    if (!fout_temp.is_open()){
+        cout<<"Nu se poate crea/modifica fisierul: "<<path_out<<endl;
+        fin_temp.close();
+        return false;
+    }
+    fout_temp<<fin_temp.rdbuf();
+    fin_temp.close();
+    fout_temp.close();
+    if (delete_source){
+        remove(path_in.c_str());
+        return true;
+    }
+    return true;
+}
 
+bool salvareDate(vector<Produs*>& vectorProduse, bool &data_change, char sep){
+    if (!data_change){
+        cout<<"Datele nu au fost modificate"<<endl;
+        return true;
+    }
+    bool bck = copiereDate("../lista_produse.csv", "../lista_produse.bck", false);
+    if (!bck){
+        return false;
+    }
+    ofstream fout("../lista_produse.csv");
+    if (!fout.is_open()){
+        cout<<"Nu se poate crea/modifica fisierul: '../lista_produse.csv'"<<endl;
+        return false;
+    }
+    fout<<"categorie,pret,model,an_fabricatie,garantie,producator,taraProvenienta,stoc,argumente_specifice->"<<endl;
+    int index = 0;
+    for (const auto& prod : vectorProduse) {
+        prod->outputFisier(fout, sep);
+        index++;
+    }
+    if (index==vectorProduse.size()){
+        cout<<"Salvare reusita."<<endl;
+        remove("../lista_produse.bck");
+        data_change = false;
+        return true;
+    } else {
+        bool redo = copiereDate( "../lista_produse.bck", "../lista_produse.csv", true);
+        if (redo){
+            cout<<"Datele nu au fost salvate!"<<endl;
+            cout<<"Fisierul '../lista_produse.csv' nu a fost modificat."<<endl;
+            return false;
+        } else {
+            cout<<"Datele nu au fost salvate!"<<endl;
+            cout<<"Datele din fisierul '../lista_produse.csv' a fost distruse!"<<endl;
+            return false;
+        }
+    }
 }
