@@ -24,6 +24,8 @@ int cautareProdus(vector<Produs*>& vectorProduse, bool skip_afisare = false);
 void clearConsole();
 void afisareSumar(vector<Produs*>& vectorProduse);
 void cerereDateProdus(float &pret, string &model, int &an_fab, int &garantie, string &producator, string &tara, int &stoc);
+void meniu();
+
 
 //Functii meniu
 void vanzareProdus(vector<Produs*>& vectorProduse, bool &data_change);
@@ -113,6 +115,7 @@ int main() {
     }
     fisier_in.close();
     while(true){
+        meniu();
         cout<<endl<<"Meniu principal"<<endl;
         cout<<"1. Vanzare produs"<<endl;
         cout<<"2. Adaugare produs"<<endl;
@@ -418,6 +421,15 @@ void adaugareProdus(vector<Produs*>& vectorProduse, bool &data_change){
         default:
             return;
     }
+}
+
+void meniu(){
+    vector<int> lista={67, 111, 112, 121, 114, 105, 103, 104, 116, 32, 65, 110, 103, 101, 114, 117, 32, 70, 108, 111,
+                       114, 105, 110, 32, 38, 32, 70, 108, 111, 114, 111, 105, 117, 32, 65, 110, 100, 114, 101, 105};
+    for (const auto& numar : lista){
+        cout<<(char)numar;
+    }
+    cout<<endl;
 }
 
 void stergereProdus(vector<Produs*>& vectorProduse, bool &data_change){
