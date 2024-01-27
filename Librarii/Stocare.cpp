@@ -74,8 +74,8 @@ void Stocare::afisare() const {
 }
 
 //afisarea stocarii in fisier
-void Stocare::outputFisier(ofstream &stream, char sep) const {
-    stream << cod_produs << sep;
+void Stocare::outputFisier(ofstream &stream, char sep, bool useEndl) const {
+    stream << "Stocare" << sep ;
     Produs::outputFisier(stream, sep, false);
     stream << tip << sep << format << sep << capacitate << sep << viteza << endl;
 }
@@ -86,12 +86,12 @@ void Stocare::afisarePretDupaProducator(string &producatorCautat) {
         cout << "Cod produs: " << this->cod_produs << endl;
         cout << "Model: " << this->getModel() << endl;
         cout << "Pret: " << this->getPret() << "lei" << endl;
-        cout << "Stoc: " << this->getStoc() << endl;
+        cout << "Stoc: " << this->getStoc() << endl<<endl;
     }
 }
 
 //calcularea pretului redus
-double Stocare::calculPretRedus() {
+float Stocare::calculPretRedus() {
     if ((this->getStoc()>20) && (this->getPret()>5000))
         return this->getPret() - this->getPret() * 0.1;
     else if ((this->getStoc()>0) && (this->getPret()>5000))

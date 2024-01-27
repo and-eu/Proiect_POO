@@ -17,6 +17,8 @@ public:
                const string &taraProvenienta, int stoc, string &tip_memorie, int capacitate,
                int frecventa); //constructor cu toate argumentele
 
+    Memorie();
+
     ~Memorie(); //destructor
 
     void afisare() const; //afisarea memoriei RAM
@@ -32,7 +34,7 @@ public:
     int getFrecventa() const;
     void setFrecventa(int frecventa);
 
-    void outputFisier(ofstream &stream, char sep = ',') const;
+    void outputFisier(ofstream &stream, char sep = ',', bool useEndl = true) const override;
 
     void afisarePretDupaProducator(string& producatorCautat);
 

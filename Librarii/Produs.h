@@ -64,4 +64,6 @@ public:
 
     virtual float calculPretRedus() = 0;
 
+    virtual const string &getCodProdus() const = 0;
+
 };

@@ -15,10 +15,19 @@ Memorie::Memorie(float pret, const string &model, int an_fabricatie, int garanti
                                                 stoc) {
     string numar= to_string(index_cod);
     string zero(4-numar.length(),'0');
-    this->cod_produs = "MR" + to_string(index_cod);
+    this->cod_produs = "MR" + zero + numar;
     this->tip_memorie = tip_memorie;
     this->capacitate = capacitate;
     this->frecventa = frecventa;
+    nrProduseDistincte++;
+    index_cod++;
+}
+
+Memorie::Memorie():Produs() {
+    this->cod_produs = "asd";
+    this->tip_memorie = "###";
+    this->capacitate = 0;
+    this->frecventa = 0;
     nrProduseDistincte++;
     index_cod++;
 }
@@ -66,8 +75,8 @@ void Memorie::afisare() const {
 }
 
 //afisarea memoriei RAM in fisier
-void Memorie::outputFisier(ofstream &stream, char sep) const {
-    stream << cod_produs << sep;
+void Memorie::outputFisier(ofstream &stream, char sep, bool useEndl) const {
+    stream << "Memorie" << sep ;
     Produs::outputFisier(stream, sep, false);
     stream << tip_memorie << sep << capacitate << sep << frecventa << endl;
 }
@@ -78,7 +87,7 @@ void Memorie::afisarePretDupaProducator(string &producatorCautat) {
         cout << "Cod produs: " << this->cod_produs << endl;
         cout << "Model: " << this->getModel() << endl;
         cout << "Pret: " << this->getPret() << "lei" << endl;
-        cout << "Stoc: " << this->getStoc() << endl;
+        cout << "Stoc: " << this->getStoc() << endl<<endl;
     }
 }
 

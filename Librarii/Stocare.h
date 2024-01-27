@@ -36,7 +36,7 @@ public:
     int getViteza() const;
     void setViteza(int viteza);
 
-    void outputFisier(ofstream &stream, char sep = ',') const;
+    void outputFisier(ofstream &stream, char sep = ',', bool useEndl = true) const override;
 
     void afisarePretDupaProducator(string& producatorCautat);
 
