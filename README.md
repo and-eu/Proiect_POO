@@ -15,3 +15,4 @@ La pornirea aplicaţiei va fi afişat următorul meniu:
 ### Diagrame:  
 <a  href="https://app.diagrams.net">Aplicatie online diagrame</a>  
 * diagrama clase: ./diagrame/clase.drawio
+* diagrama main: ./diagrame/main.drawio
